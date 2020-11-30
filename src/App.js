@@ -23,8 +23,9 @@ class App extends React.Component {
       {
         // then put just the movies (not everything) into the state
         this.setState({movies: response.data.results});
+        console.log (this.state.movies)
       });
-
+      
   }
 
   render() {
@@ -37,13 +38,24 @@ class App extends React.Component {
     return (
       <div className="App">
         <h1>Check out these movies!!!!!!</h1>
+        <div className="movies">
         {this.state.movies.map(movie =>
           {
-            return <h2>{movie.title} ({movie.release_date})</h2>;
+            return(
+              <div className="movie"> 
+             <h2>{movie.title}</h2>
+             <h4>({movie.release_date})</h4>
+            <a href={"https://www.themoviedb.org/movie/" + movie.id} >
+            <img src={"https://image.tmdb.org/t/p/w92" + movie.poster_path} />
+            </a>
+            </div>
+          );
           })}
-      </div>
-    );
-  }
-}
+            </div>
+            </div>
+        );
+      }
+    }
+    
 
 export default App;
